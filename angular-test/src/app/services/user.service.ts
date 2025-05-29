@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 export interface User {
   name: string;
-  age: number;
+  age: number | null;
 }
 
 @Injectable({
@@ -20,9 +20,8 @@ export class UserService {
     return this.httpClient.get<User[]>(`${this.apiURL}/users`);
   }
 
-  createUser(user: User): Observable<User> {
-    return this.httpClient.post<User>(`${this.apiURL}/user`, user);
+  createUser(user: User): Observable<any> {
+    return this.httpClient.post<User>(`${this.apiURL}/user`, user, { observe: 'response' })
   }
-
 
 }

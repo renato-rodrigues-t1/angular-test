@@ -9,6 +9,7 @@ import { User, UserService } from 'src/app/services/user.service';
 export class UsersComponent implements OnInit {
 
   users: User[] = [];
+  newUser: User = { name: '', age: null as any };
 
   constructor(private readonly userService: UserService) { }
 
@@ -22,10 +23,17 @@ export class UsersComponent implements OnInit {
     })
   }
 
-  addUser(user: User) {
-    this.userService.createUser(user).subscribe(res => {
-      this.loadUsers();
-    })
+  addUser() {
+    this.userService.createUser(this.newUser).subscribe({
+      next: (response) => {
+        alert(response.body.message);
+        this.newUser = { name: '', age: null };
+        this.loadUsers();
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    });
   }
 
 }
