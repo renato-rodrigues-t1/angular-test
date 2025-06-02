@@ -5,22 +5,24 @@ import { OrdersService } from 'src/app/services/orders.service';
 @Component({
   selector: 'app-orders',
   templateUrl: './orders.component.html',
-  styleUrls: ['./orders.component.css']
+  styleUrls: ['./orders.component.scss']
 })
 export class OrdersComponent implements OnInit {
 
   public orders: Order[] = []
+  loading = true;
 
   constructor(private readonly ordersService: OrdersService) { }
 
   ngOnInit(): void {
     this.ordersService.getOrders().subscribe({
       next: (orders) => {
-        console.log('>>>>>>>>>', orders);
-        this.orders = orders
+        this.orders = orders;
+        this.loading = false;
       },
       error: (error) => {
-        console.log(error)
+        console.log(error);
+        this.loading = false;
       }
     })
   }

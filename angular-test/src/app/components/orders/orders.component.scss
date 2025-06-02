@@ -1,0 +1,8 @@
+$alternative-color: rgb(118, 38, 118);
+
+.custom-btn {
+  background-color: var(--test-color); /* testing css post-processor */
+  &:hover {
+    background-color: darken($alternative-color, 10%); /* testing css pre-processor */
+  }
+}

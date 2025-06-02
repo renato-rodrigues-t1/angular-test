@@ -2,9 +2,18 @@
   <div class="flex flex-col gap-2">
     <main>
       <h1 class="text-2xl font-bold mb-4">Orders</h1>
-      <ul>
+
+      <div *ngIf="loading">
+        <p>Loading orders...</p>
+      </div>
+
+      <ul *ngIf="!loading && orders.length > 0; else noOrders">
         <li class="border p-2 my-1 rounded shadow" *ngFor="let order of orders">Id: {{ order.id }} - Product: {{ order.name }}</li>
       </ul>
+
+      <ng-template #noOrders>
+        <p class="text-gray-500 italic">No orders found.</p>
+      </ng-template>
     </main>
 
     <button class="custom-btn text-white rounded mt-4 py-2 px-4" routerLink="/">Go to Users</button>
