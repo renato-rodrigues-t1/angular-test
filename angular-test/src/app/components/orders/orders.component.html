@@ -1,0 +1,12 @@
+<div class="p-4 mx-auto max-w-md">
+  <div class="flex flex-col gap-2">
+    <main>
+      <h1 class="text-2xl font-bold mb-4">Orders</h1>
+      <ul>
+        <li class="border p-2 my-1 rounded shadow" *ngFor="let order of orders">Id: {{ order.id }} - Product: {{ order.name }}</li>
+      </ul>
+    </main>
+
+    <button class="custom-btn text-white rounded mt-4 py-2 px-4" routerLink="/">Go to Users</button>
+  </div>
+</div>
