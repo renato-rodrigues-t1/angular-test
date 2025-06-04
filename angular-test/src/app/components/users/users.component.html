@@ -1,9 +1,15 @@
 <div class="p-4 max-w-md mx-auto">
   <h1 class="text-2xl font-bold mb-4">Users</h1>
 
-  <ul class="mb-8">
+  <div *ngIf="loading" class="text-center text-gray-500">loading...</div>
+
+  <ul *ngIf="!loading && users.length > 0; else noUsers" class="mb-8">
     <li *ngFor="let user of users" class="border p-2 my-1 rounded shadow">Name: {{ user.name }} - Age: {{ user.age }}</li>
   </ul>
+
+  <ng-template #noUsers>
+    <p>No User found</p>
+  </ng-template>
 
   <h2 class="font-bold">Create a new User:</h2>
 

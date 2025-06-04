@@ -11,6 +11,7 @@ export class UsersComponent implements OnInit {
 
   users: User[] = [];
   newUser: User = { name: '', age: null as any };
+  loading: boolean = false;
 
   constructor(private readonly userService: UserService) { }
 
@@ -19,8 +20,10 @@ export class UsersComponent implements OnInit {
   }
 
   loadUsers() {
+    this.loading = true;
     this.userService.getUsers().subscribe(res => {
       this.users = res;
+      this.loading = false;
     })
   }
 
