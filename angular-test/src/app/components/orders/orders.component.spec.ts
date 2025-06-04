@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Order } from 'src/app/models/Order.interface';
 import { OrdersComponent } from './orders.component';
 import { LoadingComponent } from 'src/app/shared/components/loading/loading.component';
@@ -12,28 +11,23 @@ describe('OrdersComponent', () => {
   let orderServiceMock: jest.Mocked<OrdersService>;
 
   const mockOrders: Order[] = [
-    {
-      id: 1, name: 'Order 1'
-    },
-    {
-      id: 2, name: 'Order 2'
-    }
+    { id: 1, name: 'Order 1' },
+    { id: 2, name: 'Order 2' }
   ]
 
   beforeEach(async () => {
-
     orderServiceMock = {
-      getOrders: jest.fn()
+      getOrders: jest.fn().mockReturnValue(of(mockOrders))
     } as unknown as jest.Mocked<OrdersService>;
 
     await TestBed.configureTestingModule({
       declarations: [OrdersComponent, LoadingComponent],
       providers: [{ provide: OrdersService, useValue: orderServiceMock }],
-    }).compileComponents;
+    }).compileComponents();
 
     fixture = TestBed.createComponent(OrdersComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    fixture.detectChanges(); // now safe: getOrders is already mocked
   });
 
   it('should create', () => {
@@ -41,10 +35,6 @@ describe('OrdersComponent', () => {
   });
 
   it('should fetch orders successfully on init', () => {
-    orderServiceMock.getOrders.mockReturnValue(of(mockOrders));
-
-    component.ngOnInit();
-
     expect(orderServiceMock.getOrders).toHaveBeenCalled();
     expect(component.orders).toEqual(mockOrders);
     expect(component.loading).toBe(false);
