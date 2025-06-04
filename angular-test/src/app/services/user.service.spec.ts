@@ -4,13 +4,16 @@ import { UserService } from './user.service';
 
 describe('UserService', () => {
   let service: UserService;
+  let httpMock: HttpClientTestingModule;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule]
 
     });
+
     service = TestBed.inject(UserService);
+    httpMock = TestBed.inject(HttpClientTestingModule);
   });
 
   it('should be created', () => {
