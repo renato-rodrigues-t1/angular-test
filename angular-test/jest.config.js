@@ -1,12 +1,15 @@
+process.env.TZ = 'UTC';
+
 module.exports = {
   preset: 'jest-preset-angular',
   setupFilesAfterEnv: ['<rootDir>/setup-jest.ts'],
-  testEnvironment: 'jsdom',
-  transform: {
-    '^.+\\.(ts|js|html)$': 'ts-jest'
+  coveragePathIgnorePatterns: ['node_modules', 'dist', 'assets', 'environments', '.module.ts', '.html', 'mocks', 'state-management-demo'],
+  globals: {
+    'ts-jest': {
+      tsconfig: '<rootDir>/tsconfig.spec.json',
+      stringifyContentPathRegex: '\\.html$'
+    }
   },
-  testMatch: ['**/+(*.)+(spec).+(ts)'],
-  moduleFileExtensions: ['ts', 'html', 'js', 'json'],
-  collectCoverage: true,
-  coverageReporters: ['html']
+  modulePathIgnorePatterns: ['environment.test.ts'],
+  modulePaths: ['<rootDir>', '/src']
 };
