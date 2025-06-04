@@ -1,0 +1,17 @@
+<main class="p-4 mx-auto max-w-md">
+  <h1 class="text-2xl font-bold mb-4">Products</h1>
+
+  <div *ngIf="loading" class="text-center text-gray-500">loading...</div>
+
+  <ul *ngIf="!loading && products.length > 0; else noProducts" class="mb-8">
+    <li *ngFor="let Product of products" class="border p-2 my-1 rounded shadow">
+      <p>Name: {{ Product.title }}</p>
+      <p>Price: {{ Product.price }}</p>
+      <p>Description: {{ Product.description }}</p>
+    </li>
+  </ul>
+
+  <ng-template #noProducts>
+    <p class="text-gray-500 italic">No products found.</p>
+  </ng-template>
+</main>
