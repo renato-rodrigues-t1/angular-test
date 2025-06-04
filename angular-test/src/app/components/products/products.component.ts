@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { finalize } from 'rxjs';
 import { Product } from 'src/app/models/Product.interface';
 import { ProductsService } from 'src/app/services/products.service';
 
@@ -20,10 +21,13 @@ export class ProductsComponent implements OnInit {
 
   loadProducts() {
     this.loading = true;
-    this.productsService.fetchAllProducts().subscribe(data => {
-      this.products = data;
-      this.loading = false;
-    })
+    this.productsService.fetchAllProducts()
+      .pipe(
+        finalize(() => this.loading = false))
+      .subscribe(data => {
+        this.products = data;
+        this.loading = false;
+      })
   }
 
 }

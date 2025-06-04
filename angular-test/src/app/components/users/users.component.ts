@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { finalize } from 'rxjs';
 import { User } from 'src/app/models/User.interface';
 import { UserService } from 'src/app/services/user.service';
 
@@ -21,9 +22,13 @@ export class UsersComponent implements OnInit {
 
   loadUsers() {
     this.loading = true;
-    this.userService.getUsers().subscribe(res => {
-      this.users = res;
-      this.loading = false;
+    this.userService.getUsers().pipe(finalize(() => this.loading = false)).subscribe({
+      next: (users) => {
+        this.users = users;
+      }
+      , error: (error) => {
+        this.loading = false;
+      }
     })
   }
 

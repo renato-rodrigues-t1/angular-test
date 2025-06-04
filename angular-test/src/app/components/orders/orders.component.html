@@ -3,20 +3,17 @@
     <main>
       <h1 class="text-2xl font-bold mb-4">Orders</h1>
 
-      <div *ngIf="loading">
-        <p>Loading orders...</p>
-      </div>
+      <app-loading [loading]="loading"></app-loading>
 
-      <ul *ngIf="!loading && orders.length > 0; else noOrders">
-        <li class="border p-2 my-1 rounded shadow" *ngFor="let order of orders">Id: {{ order.id }} - Product: {{ order.name }}</li>
-      </ul>
+      <div *ngIf="!loading">
+        <ul *ngIf="orders.length > 0; else noOrders">
+          <li class="border p-2 my-1 rounded shadow" *ngFor="let order of orders">Id: {{ order.id }} - Product: {{ order.name }}</li>
+        </ul>
+      </div>
 
       <ng-template #noOrders>
         <p class="text-gray-500 italic">No orders found.</p>
       </ng-template>
     </main>
-
-    <button class="custom-btn text-white rounded mt-4 py-2 px-4" routerLink="/">Go to Users</button>
-    <button class="bg-blue-500 hover:bg-blue-600 text-white rounded mt-4 py-2 px-4" routerLink="/products">Go to Products</button>
   </div>
 </div>

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { catchError, Observable, throwError, timeout } from 'rxjs';
 import { User } from '../models/User.interface';
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,12 @@ export class UserService {
   constructor(private httpClient: HttpClient) { }
 
   getUsers(): Observable<User[]> {
-    return this.httpClient.get<User[]>(`${this.apiURL}/users`);
+    return this.httpClient.get<User[]>(`${this.apiURL}/users`).pipe(
+      timeout(5000),
+      catchError((error) => {
+        return throwError(() => new Error(error));
+      })
+    );
   }
 
   createUser(user: User): Observable<any> {

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { catchError, finalize, throwError } from 'rxjs';
 import { Order } from 'src/app/models/Order.interface';
 import { OrdersService } from 'src/app/services/orders.service';
 
@@ -15,7 +16,14 @@ export class OrdersComponent implements OnInit {
   constructor(private readonly ordersService: OrdersService) { }
 
   ngOnInit(): void {
-    this.ordersService.getOrders().subscribe({
+    this.ordersService.getOrders().pipe(
+      finalize(() => this.loading = false),
+      catchError((error) => {
+        console.error('Error fetching orders:', error);
+        this.loading = false;
+        return throwError(() => new Error('Failed to fetch orders'));
+      })
+    ).subscribe({
       next: (orders) => {
         this.orders = orders;
         this.loading = false;
