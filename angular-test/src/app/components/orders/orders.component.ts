@@ -19,7 +19,6 @@ export class OrdersComponent implements OnInit {
     this.ordersService.getOrders().pipe(
       finalize(() => this.loading = false),
       catchError((error) => {
-        console.error('Error fetching orders:', error);
         this.loading = false;
         return throwError(() => new Error('Failed to fetch orders'));
       })
