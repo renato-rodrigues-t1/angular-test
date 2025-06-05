@@ -6,9 +6,9 @@
   <div *ngIf="!loading">
     <ul *ngIf="products.length > 0; else noProducts" class="mb-8">
       <li *ngFor="let Product of products" class="border p-2 my-1 rounded shadow">
-        <p>Name: {{ Product.title }}</p>
-        <p>Price: {{ Product.price }}</p>
-        <p>Description: {{ Product.description }}</p>
+        <p><b>Name:</b> {{ Product.title }}</p>
+        <p><b>Price:</b> {{ Product.price }}</p>
+        <p><b>Description:</b> {{ Product.description }}</p>
       </li>
     </ul>
   </div>
