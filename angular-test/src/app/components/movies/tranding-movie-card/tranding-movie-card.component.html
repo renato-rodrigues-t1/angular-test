@@ -1,0 +1,7 @@
+<div class="relative w-[240px] md:w-[470px] h-[140px] md:h-[230px] rounded-xl overflow-hidden shadow-lg">
+  <img [src]="movie?.thumbnail" alt="{{ movie?.title }}" class="object-cover w-full h-full" />
+  <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent text-white">
+    <div class="text-sm opacity-75">{{ movie?.year }} • {{ movie?.category }} • {{ movie?.rating }}</div>
+    <div class="text-lg font-semibold">{{ movie?.title }}</div>
+  </div>
+</div>
