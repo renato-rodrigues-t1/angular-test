@@ -6,7 +6,7 @@
   </div>
 </div> -->
 
-<div class="rounded-xl overflow-hidden shadow hover:scale-105 transition-transform duration-200 w-[150px] sm:w-[180px]">
+<div class="rounded-xl overflow-hidden shadow hover:scale-105 transition-transform duration-200 cursor-pointer mb-4 min-w-[220px] max-w-[300px]">
   <img [src]="thumbnails[index].urls.thumb" alt="{{ movie?.title }}" class="w-full h-[90px] sm:h-[120px] object-cover" />
   <div class="p-2 text-sm">
     <div class="opacity-60">{{ movie?.year }} • {{ movie?.category }} • {{ movie?.rating }}</div>

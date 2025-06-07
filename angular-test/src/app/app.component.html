@@ -10,6 +10,24 @@
   </div>
 </nav> -->
 
-<div class="p-6">
-  <router-outlet></router-outlet>
+<div class="flex min-h-screen">
+  <!-- Sidebar -->
+  <nav class="w-20 bg-gray-900 text-white flex flex-col items-center py-6 space-y-6">
+    <a routerLink="/" class="hover:text-blue-500">
+      <i class="fas fa-home text-xl"></i>
+    </a>
+    <a routerLink="/movies" class="hover:text-blue-500">
+      <i class="fas fa-film text-xl"></i>
+    </a>
+    <a routerLink="/bookmarked" class="hover:text-blue-500">
+      <i class="fas fa-bookmark text-xl"></i>
+    </a>
+    <a routerLink="/profile" class="hover:text-blue-500">
+      <i class="fas fa-user text-xl"></i>
+    </a>
+  </nav>
+
+  <div class="flex-1 bg-gray-100 overflow-auto">
+    <router-outlet></router-outlet>
+  </div>
 </div>
