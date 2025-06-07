@@ -1,33 +1,29 @@
-<!-- <nav style="margin-bottom: 60px" class="flex fixed top-0 left-0 w-full z-50 justify-between items-center p-4 bg-white shadow">
-  <div class="left">
-    <a routerLink="/" class="nav-link">Home</a>
-  </div>
-
-  <div class="right flex gap-4">
-    <a routerLink="/" class="nav-link">Users</a>
-    <a routerLink="/products" class="nav-link">Products</a>
-    <a routerLink="/orders" class="nav-link">Orders</a>
-  </div>
-</nav> -->
-
 <div class="flex min-h-screen">
-  <!-- Sidebar -->
-  <nav class="w-20 bg-gray-900 text-white flex flex-col items-center py-6 space-y-6">
-    <a routerLink="/" class="hover:text-blue-500">
-      <i class="fas fa-home text-xl"></i>
-    </a>
-    <a routerLink="/movies" class="hover:text-blue-500">
-      <i class="fas fa-film text-xl"></i>
-    </a>
-    <a routerLink="/bookmarked" class="hover:text-blue-500">
-      <i class="fas fa-bookmark text-xl"></i>
-    </a>
-    <a routerLink="/profile" class="hover:text-blue-500">
-      <i class="fas fa-user text-xl"></i>
-    </a>
-  </nav>
+  <aside class="w-20 bg-gray-900 text-white flex flex-col justify-start items-center">
+    <nav class="bg-gray-800 rounded-xl w-[calc(100%-2rem)] mx-auto min-h-[400px] max-h-[600px] flex flex-col justify-between p-2 sticky top-4">
+      <div id="menu" class="flex flex-col w-full justify-start items-center">
+        <a routerLink="/" class="hover:text-blue-500">
+          <i class="fas fa-home text-xl">a</i>
+        </a>
+        <a routerLink="/movies" class="hover:text-blue-500">
+          <i class="fas fa-film text-xl">b</i>
+        </a>
+        <a routerLink="/bookmarked" class="hover:text-blue-500">
+          <i class="fas fa-bookmark text-xl">c</i>
+        </a>
+        <a routerLink="/profile" class="hover:text-blue-500">
+          <i class="fas fa-user text-xl">d</i>
+        </a>
+      </div>
+      <div id="menu" class="flex flex-col w-full justify-end items-center">
+        <a routerLink="/profile">
+          <i class="fas fa-user text-xl">p</i>
+        </a>
+      </div>
+    </nav>
+  </aside>
 
-  <div class="flex-1 bg-gray-100 overflow-auto">
+  <div class="flex-1 bg-gray-900 text-white overflow-auto">
     <router-outlet></router-outlet>
   </div>
 </div>
