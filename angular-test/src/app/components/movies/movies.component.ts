@@ -11,13 +11,23 @@ export class MoviesComponent {
 
   trandingMovies: Movie[] = [];
   recomendedMovies: Movie[] = [];
+  trandingThumbnails: any[] = [];
+  recomendedThumbnails: any[] = [];
 
   constructor(private readonly service: MovieService) { }
 
   ngOnInit(): void {
-    this.service.getAllMovies().subscribe(data => {
+    this.service.getTrandinglMovies().subscribe(data => {
       this.trandingMovies = data;
       this.recomendedMovies = data;
+    });
+
+    this.service.getTrandingThumbnails().subscribe(data => {
+      this.trandingThumbnails = data;
+    })
+
+    this.service.getThumbnails().subscribe(data => {
+      this.recomendedThumbnails = data;
     })
   }
 
