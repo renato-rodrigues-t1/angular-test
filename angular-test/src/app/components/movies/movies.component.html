@@ -1,19 +1,31 @@
 <main>
   <div class="p-6">
-    <input type="text" placeholder="Search for movies or TV series" class="w-full max-w-[500px] px-4 py-2 rounded bg-gray-800 text-white placeholder-gray-400 focus:outline-none" />
+    <input
+      type="text"
+      placeholder="Search for movies or TV series"
+      class="w-full max-w-[500px] px-4 py-2 rounded bg-gray-800 text-white placeholder-gray-400 focus:outline-none"
+    />
   </div>
 
-  <section id="trending">
+  <section id="trending" class="min-h-[250px]">
     <h2 class="text-2xl pl-6">Tranding</h2>
-    <div class="flex gap-4 overflow-x-auto py-4 pl-6">
-      <app-tranding-movie-card *ngFor="let movie of trandingMovies; index as i" [movie]="movie" [thumbnails]="trandingThumbnails" [index]="i"></app-tranding-movie-card>
+    <app-loading [loading]="loadingTranding"></app-loading>
+    <div *ngIf="!loadingTranding">
+      <div *ngIf="trandingMovies.length > 0; else noTrandingMovies" class="flex gap-4 overflow-x-auto py-4 pl-6">
+        <app-tranding-movie-card *ngFor="let movie of trandingMovies" [movie]="movie"></app-tranding-movie-card>
+      </div>
     </div>
+    <ng-template #noTrandingMovies> No tranding movies retrieved </ng-template>
   </section>
 
   <section id="recommended">
     <h2 class="text-2xl pl-6">Recommended for you</h2>
-    <div class="custom-movies-class p-6">
-      <app-movie-card *ngFor="let movie of recomendedMovies; index as i" [movie]="movie" [thumbnails]="recomendedThumbnails" [index]="i"></app-movie-card>
+    <app-loading [loading]="loadingTranding"></app-loading>
+    <div *ngIf="!loadingRecomendations">
+      <div *ngIf="recomendedMovies.length > 0; noRecomendedMovies" class="custom-movies-class p-6">
+        <app-movie-card *ngFor="let movie of recomendedMovies" [movie]="movie"></app-movie-card>
+      </div>
     </div>
+    <ng-template #noRecomendedMovies> No recommended movies retrieved </ng-template>
   </section>
 </main>

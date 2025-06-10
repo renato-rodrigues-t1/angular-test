@@ -9,7 +9,7 @@
 <div
   class="rounded-xl overflow-hidden shadow shadow-gray-950 hover:scale-105 transition-transform duration-200 cursor-pointer mb-4 min-w-[250px] max-w-[420px] flex flex-col justify-between"
 >
-  <img [src]="thumbnails[index].urls.small" alt="{{ movie?.title }}" class="w-full h-[90px] sm:h-[120px] object-cover" />
+  <img [src]="movie?.image?.urls?.small" alt="{{ movie?.title }}" class="w-full h-[90px] sm:h-[120px] object-cover" />
   <div class="p-2 text-sm">
     <div class="opacity-60">{{ movie?.year }} • {{ movie?.category }} • {{ movie?.rating }}</div>
     <div class="font-semibold mt-1">{{ movie?.title }}</div>

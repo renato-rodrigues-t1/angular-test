@@ -9,7 +9,5 @@ import { Movie } from 'src/app/models/Movie';
 export class TrandingMovieCardComponent {
 
   @Input() movie?: Movie;
-  @Input() thumbnails?: any;
-  @Input() index: number = 0;
 
 }

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { finalize } from 'rxjs';
 import { Movie } from 'src/app/models/Movie';
 import { MovieService } from 'src/app/services/movie.service';
 
@@ -9,6 +10,9 @@ import { MovieService } from 'src/app/services/movie.service';
 })
 export class MoviesComponent {
 
+  loadingTranding = false;
+  loadingRecomendations = false;
+
   trandingMovies: Movie[] = [];
   recomendedMovies: Movie[] = [];
   trandingThumbnails: any[] = [];
@@ -17,18 +21,22 @@ export class MoviesComponent {
   constructor(private readonly service: MovieService) { }
 
   ngOnInit(): void {
-    this.service.getTrandinglMovies().subscribe(data => {
-      this.trandingMovies = data;
-      this.recomendedMovies = data;
-    });
+    this.loadingTranding = true;
+    this.loadingRecomendations = true;
 
-    this.service.getTrandingThumbnails().subscribe(data => {
-      this.trandingThumbnails = data;
-    })
+    this.service.getTrendingMovies().
+      pipe(
+        finalize(() => this.loadingTranding = false)).
+      subscribe(data => {
+        this.trandingMovies = data;
+      });
 
-    this.service.getThumbnails().subscribe(data => {
-      this.recomendedThumbnails = data;
-    })
+    this.service.getRecommendedMovies().
+      pipe(
+        finalize(() => this.loadingRecomendations = false)).
+      subscribe(data => {
+        this.recomendedMovies = data;
+      })
   }
 
 }

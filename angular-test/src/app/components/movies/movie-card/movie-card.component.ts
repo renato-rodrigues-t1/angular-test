@@ -9,8 +9,6 @@ import { Movie } from 'src/app/models/Movie';
 export class MovieCardComponent {
 
   @Input() movie?: Movie;
-  @Input() thumbnails?: any;
-  @Input() index: number = 0;
 
   constructor() { }
 
