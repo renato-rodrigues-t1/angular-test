@@ -4,6 +4,8 @@ import { UsersComponent } from './components/users/users.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { ProductsComponent } from './components/products/products.component';
 import { MoviesComponent } from './components/movies/movies.component';
+import { MovieComponent } from './components/movies/movie/movie.component';
+import { BookmarksComponent } from './components/bookmarks/bookmarks.component';
 
 const routes: Routes = [
   {
@@ -17,6 +19,12 @@ const routes: Routes = [
   },
   {
     path: 'products', component: ProductsComponent,
+  },
+  {
+    path: 'movie/:id', component: MovieComponent,
+  },
+  {
+    path: 'bookmarks', component: BookmarksComponent
   }
 ];
 

@@ -7,11 +7,15 @@
 </div> -->
 
 <div
-  class="rounded-xl overflow-hidden shadow shadow-gray-950 hover:scale-105 transition-transform duration-200 cursor-pointer mb-4 min-w-[250px] max-w-[420px] flex flex-col justify-between"
+  class="relative rounded-xl overflow-hidden shadow shadow-gray-950 hover:scale-105 transition-transform duration-200 cursor-pointer mb-4 min-w-[250px] max-w-[420px] flex flex-col justify-between"
 >
-  <img [src]="movie?.image?.urls?.small" alt="{{ movie?.title }}" class="w-full h-[90px] sm:h-[120px] object-cover" />
+  <button (click)="toggleBookmark($event)" class="absolute top-2 right-2 z-10 bg-black/60 px-2 rounded-full">
+    <i [ngClass]="movie.isBookmarked ? 'fas fa-bookmark text-white text-xl' : 'far fa-bookmark text-gray-400 text-xl'"></i>
+  </button>
+
+  <img [src]="movie.image.urls.small" alt="{{ movie.title }}" class="w-full h-[90px] sm:h-[120px] object-cover" />
   <div class="p-2 text-sm">
-    <div class="opacity-60">{{ movie?.year }} • {{ movie?.category }} • {{ movie?.rating }}</div>
-    <div class="font-semibold mt-1">{{ movie?.title }}</div>
+    <div class="opacity-60">{{ movie.year }} • {{ movie.category }} • {{ movie.rating }}</div>
+    <div class="font-semibold mt-1">{{ movie.title }}</div>
   </div>
 </div>

@@ -1,0 +1,20 @@
+<div class="w-screen h-screen overflow-hidden">
+  <!-- Background Image -->
+  <img [src]="movie?.image?.urls?.full" alt="{{ movie?.title }}" class="inset-0 w-full h-[80vh] object-cover z-0" />
+
+  <!-- Mock Video Player -->
+  <div *ngIf="playing" class="absolute inset-0 bg-black z-20 flex items-center justify-center">
+    <video autoplay loop muted class="w-3/4 rounded shadow-xl">
+      <source src="assets/mock-trailer.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+    <button (click)="playing = false" class="absolute top-4 right-4 text-white text-2xl">✕</button>
+  </div>
+
+  <div class="bottom-[20vh] left-0 right-0 p-4 bg-gradient-to-t from-black/100 to-transparent text-white h-[20vh] flex flex-col justify-end items-center mb-[20vh]">
+    <div class="text-sm opacity-75">{{ movie?.year }} • {{ movie?.category }} • {{ movie?.rating }}</div>
+    <div class="text-lg font-semibold">{{ movie?.title }}</div>
+    <button class="bg-white text-black font-semibold px-6 py-2 rounded hover:bg-gray-300" (click)="playing = true">▶ Play</button>
+  </div>
+  <div class="min-h-[400px] bg-black"></div>
+</div>

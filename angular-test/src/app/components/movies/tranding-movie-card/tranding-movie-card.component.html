@@ -1,5 +1,6 @@
 <div
   class="relative hover:scale-105 transition-transform duration-200 w-[470px] h-[230px] rounded-xl overflow-hidden shadow-gray-950 shadow-lg cursor-pointer"
+  (click)="openMovie()"
 >
   <img [src]="movie?.image?.urls?.regular" alt="{{ movie?.title }}" class="object-cover w-full h-full" />
   <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent text-white">

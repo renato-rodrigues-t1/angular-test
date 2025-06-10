@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { finalize, map } from 'rxjs';
-import { Product } from 'src/app/models/Product.interface';
+import { Product } from 'src/app/models/product.interface';
 import { ProductsService } from 'src/app/services/products.service';
 
 @Component({
@@ -27,7 +27,6 @@ export class ProductsComponent implements OnInit {
           (products: Product[]) =>
             products
               .filter(product => product.price < 60)
-              .map(product => ({ ...product, title: product.title.toUpperCase() }))
         ),
         finalize(() => this.loading = false)
       )

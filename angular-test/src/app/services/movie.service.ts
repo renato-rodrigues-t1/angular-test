@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, filter, map, Observable, shareReplay, switchMap, tap } from 'rxjs';
-import { Movie, UnsplashImage } from '../models/Movie';
+import { Movie, UnsplashImage } from '../models/movie.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -55,8 +55,21 @@ export class MovieService {
   getRecommendedMovies(): Observable<Movie[]> {
     return this.loadMovieList(
       this.moviesUrl + 'movies/recomended',
-      (count) => `https://api.unsplash.com/photos/random?client_id=${this.ACCESS_KEY}&count=${count}`,
+      (count) => `https://api.unsplash.com/photos?client_id=${this.ACCESS_KEY}&per_page=${count}&page=2`,
       this.recomendedMovies$
     );
   }
+
+  updateRecommendedMovie(updatedMovie: Movie): void {
+    const current = this.recomendedMovies$.value;
+
+    if (!current) return;
+
+    const updatedList = current.map(movie =>
+      movie.title === updatedMovie.title ? updatedMovie : movie
+    );
+
+    this.recomendedMovies$.next(updatedList);
+  }
+
 }

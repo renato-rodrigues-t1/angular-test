@@ -12,6 +12,8 @@ import { LoadingComponent } from './shared/components/loading/loading.component'
 import { MoviesComponent } from './components/movies/movies.component';
 import { MovieCardComponent } from './components/movies/movie-card/movie-card.component';
 import { TrandingMovieCardComponent } from './components/movies/tranding-movie-card/tranding-movie-card.component';
+import { MovieComponent } from './components/movies/movie/movie.component';
+import { BookmarksComponent } from './components/bookmarks/bookmarks.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { TrandingMovieCardComponent } from './components/movies/tranding-movie-c
     LoadingComponent,
     MoviesComponent,
     MovieCardComponent,
-    TrandingMovieCardComponent
+    TrandingMovieCardComponent,
+    MovieComponent,
+    BookmarksComponent
   ],
   imports: [
     BrowserModule,

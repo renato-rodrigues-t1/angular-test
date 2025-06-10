@@ -1,0 +1,12 @@
+<main>
+  <section id="recommended">
+    <h2 class="text-2xl pl-6">Bookmarks</h2>
+    <app-loading [loading]="loadingBookmarks"></app-loading>
+    <div *ngIf="!loadingBookmarks">
+      <div *ngIf="bookmarkedMovies.length > 0; else noRecommendedMovies" class="custom-movies-class p-6">
+        <app-movie-card *ngFor="let movie of bookmarkedMovies" [movie]="movie" (bookmarkToggled)="onUpdateMovie($event)"></app-movie-card>
+      </div>
+    </div>
+    <ng-template #noRecommendedMovies> No Bookmarked movies yet </ng-template>
+  </section>
+</main>

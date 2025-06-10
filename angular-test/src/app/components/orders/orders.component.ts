@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { catchError, finalize, throwError } from 'rxjs';
-import { Order } from 'src/app/models/Order.interface';
+import { Order } from 'src/app/models/order.interface';
 import { OrdersService } from 'src/app/services/orders.service';
 
 @Component({

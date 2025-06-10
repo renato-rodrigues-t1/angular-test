@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Movie } from 'src/app/models/Movie';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Movie } from 'src/app/models/movie.interface';
 
 @Component({
   selector: 'app-movie-card',
@@ -8,8 +8,14 @@ import { Movie } from 'src/app/models/Movie';
 })
 export class MovieCardComponent {
 
-  @Input() movie?: Movie;
+  @Input() movie!: Movie;
+  @Output() bookmarkToggled = new EventEmitter<Movie>();
 
   constructor() { }
+
+  toggleBookmark(event: Event) {
+    if (this.movie) this.movie.isBookmarked = !this.movie.isBookmarked;
+    this.bookmarkToggled.emit(this.movie);
+  }
 
 }

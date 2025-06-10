@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { Movie } from 'src/app/models/Movie';
+import { Movie } from 'src/app/models/movie.interface';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-tranding-movie-card',
@@ -9,5 +10,11 @@ import { Movie } from 'src/app/models/Movie';
 export class TrandingMovieCardComponent {
 
   @Input() movie?: Movie;
+
+  constructor(private router: Router) { }
+
+  openMovie() {
+    this.router.navigate(['/movie', this.movie?.title]);
+  }
 
 }

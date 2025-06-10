@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Order } from 'src/app/models/Order.interface';
+import { Order } from 'src/app/models/order.interface';
 import { OrdersComponent } from './orders.component';
 import { LoadingComponent } from 'src/app/shared/components/loading/loading.component';
 import { OrdersService } from 'src/app/services/orders.service';

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { finalize } from 'rxjs';
-import { Movie } from 'src/app/models/Movie';
+import { finalize, take } from 'rxjs';
+import { Movie } from 'src/app/models/movie.interface';
 import { MovieService } from 'src/app/services/movie.service';
 
 @Component({
@@ -26,6 +26,7 @@ export class MoviesComponent {
 
     this.service.getTrendingMovies().
       pipe(
+        take(1),
         finalize(() => this.loadingTranding = false)).
       subscribe(data => {
         this.trandingMovies = data;
@@ -33,10 +34,16 @@ export class MoviesComponent {
 
     this.service.getRecommendedMovies().
       pipe(
+        take(1),
         finalize(() => this.loadingRecomendations = false)).
       subscribe(data => {
         this.recomendedMovies = data;
       })
+  }
+
+  onUpdateMovie(updatedMovie: Movie) {
+    console.log('Received from child', updatedMovie); // <-- must log!
+    this.service.updateRecommendedMovie(updatedMovie);
   }
 
 }
