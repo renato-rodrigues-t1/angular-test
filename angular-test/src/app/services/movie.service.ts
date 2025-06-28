@@ -60,6 +60,18 @@ export class MovieService {
     );
   }
 
+  searchForMovies(query: string): Observable<Movie[]> {
+    return this.http.get<Movie[]>(`${this.moviesUrl}movies/search`, { params: { query } });
+  }
+
+  deleteMovis(movieId: string): Observable<string> {
+    return this.http.delete<string>(`${this.moviesUrl}movie/${movieId}`);
+  }
+
+  updateBookmark(movieId: string, isBookmarked: boolean): Observable<Movie> {
+    return this.http.put<Movie>(`${this.moviesUrl}movie/${movieId}/bookmark`, { bookmarked: isBookmarked });
+  }
+
   updateRecommendedMovie(updatedMovie: Movie): void {
     const current = this.recomendedMovies$.value;
 
